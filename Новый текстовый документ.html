@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>FNaF</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      animation: flash 0.05s infinite;
+    }
+
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Мигающая картинка -->
+  <img src="freddy.png" alt="Freddy">
+
+  <!-- Звук -->
+  <audio id="fnafAudio" autoplay>
+    <source src="fnaf.mp3" type="audio/mpeg">
+    <source src="fnaf.ogg" type="audio/ogg">
+    Ваш браузер не поддерживает звук.
+  </audio>
+
+  <script>
+    const audio = document.getElementById('fnafAudio');
+
+    // Пробуем включить звук программно (даже если autoplay не сработал)
+    window.onload = () => {
+      const tryPlay = () => {
+        audio.volume = 1.0;
+        audio.play().catch(e => {
+          console.log("Автовоспроизведение заблокировано:", e);
+        });
+      };
+
+      setTimeout(tryPlay, 500); // Подождать немного после загрузки
+    };
+
+    // Самокопирование сайта (3 раза)
+    let opened = 0;
+    const interval = setInterval(() => {
+      if (opened < 3) {
+        window.open(window.location.href, '_blank');
+        opened++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 700);
+  </script>
+
+</body>
+</html>
+
+
